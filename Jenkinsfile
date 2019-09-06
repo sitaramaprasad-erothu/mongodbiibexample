@@ -1,6 +1,6 @@
 pipeline {
 
-    // Instructs Jenkins to use the buildconductor docker image to run this pipeline 123
+    // Instructs Jenkins to use the buildconductor docker image to run this pipeline 123Test
     
     agent {
         docker { 
