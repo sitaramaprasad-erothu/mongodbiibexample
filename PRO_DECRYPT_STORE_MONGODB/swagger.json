@@ -1,0 +1,76 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "PRO_DECRYPT_STORE_MONGODB",
+    "version" : "1.0.0",
+    "description" : "PRO_DECRYPT_STORE_MONGODB"
+  },
+  "paths" : {
+    "/insertPayload" : {
+      "post" : {
+        "operationId" : "postInsertPayload",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a insertPayload",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/InsertPayload"
+          },
+          "description" : "InsertPayload",
+          "required" : true
+        } ]
+      }
+    },
+    "/updatePayload" : {
+      "post" : {
+        "operationId" : "postUpdatePayload",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a updatePayload",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/UpdatePayload"
+          },
+          "description" : "UpdatePayload",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/api/decrypt/store/",
+  "definitions" : {
+    "InsertPayload" : {
+      "type" : "object",
+      "properties" : {
+        "Payload" : {
+          "type" : "object"
+        }
+      }
+    },
+    "UpdatePayload" : {
+      "type" : "object",
+      "properties" : {
+        "RecId" : {
+          "type" : "string"
+        },
+        "Payload" : {
+          "type" : "object"
+        }
+      }
+    }
+  }
+}

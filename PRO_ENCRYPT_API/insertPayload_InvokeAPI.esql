@@ -1,0 +1,11 @@
+
+CREATE COMPUTE MODULE insertPayload_InvokeAPI
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.InsertPayload.Payload = InputRoot.BLOB.BLOB;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = udpEndpoint;
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

@@ -1,0 +1,76 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "PRO_ENCRYPT_API",
+    "version" : "1.0.0",
+    "description" : "PRO_ENCRYPT_API"
+  },
+  "paths" : {
+    "/updatePayload" : {
+      "post" : {
+        "operationId" : "updatePayload",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a updatePayload",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/UpdatePayload"
+          },
+          "description" : "UpdatePayload",
+          "required" : true
+        } ]
+      }
+    },
+    "/insertPayload" : {
+      "post" : {
+        "operationId" : "insertPayload",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a InsertPayload",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/InsertPayload"
+          },
+          "description" : "InsertPayload",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/api/encrypt/",
+  "definitions" : {
+    "InsertPayload" : {
+      "type" : "object",
+      "properties" : {
+        "Payload" : {
+          "type" : "object"
+        }
+      }
+    },
+    "UpdatePayload" : {
+      "type" : "object",
+      "properties" : {
+        "RecId" : {
+          "type" : "string"
+        },
+        "Payload" : {
+          "type" : "object"
+        }
+      }
+    }
+  }
+}

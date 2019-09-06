@@ -1,0 +1,12 @@
+
+
+CREATE COMPUTE MODULE updatePayload_InvokeAPI
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.UpdatePayload.RecId = Environment.Variables.RecId;
+		SET OutputRoot.JSON.Data.UpdatePayload.Payload = InputRoot.BLOB.BLOB;
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL = udpEndpoint;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

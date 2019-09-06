@@ -1,0 +1,41 @@
+-- pushing the code to Test Webhookkkk
+DECLARE udpFilePath EXTERNAL CHARACTER '';
+DECLARE udpEndpoint EXTERNAL CHARACTER '';
+
+CREATE COMPUTE MODULE insertPayload_CheckKeys
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE bKeysExist BOOLEAN FALSE;
+		SET Environment.Variables.RecId = InputRoot.JSON.Data.UpdatePayload.RecId;
+		--Make sure this UDP value is same as the file path given in "GenerateKeys" node
+		BEGIN ATOMIC 
+			SET bKeysExist = CheckIfFileExists(udpFilePath);
+		END;
+		
+		IF NOT bKeysExist THEN
+			SET OutputRoot = InputRoot;
+			PROPAGATE TO TERMINAL 1 DELETE NONE;
+		END IF;
+		SET OutputRoot = InputRoot;
+		RETURN TRUE;
+	END;
+	
+	CREATE FUNCTION CheckIfFileExists ( IN cFilePath CHARACTER)
+	 RETURNS BOOLEAN
+	 LANGUAGE JAVA 
+	 EXTERNAL NAME "com.prolifics.utils.JAVAUTILS.checkIfFileExists";
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

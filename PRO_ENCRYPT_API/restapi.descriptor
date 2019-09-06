@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/PRO_ENCRYPT_API.msgflow" https="false">
+    <ns2:operations>
+        <ns2:operation name="insertPayload" implementation="insertPayload.subflow"/>
+        <ns2:operation name="updatePayload" implementation="updatePayload.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers>
+        <ns2:errorHandler type="CATCH" implementation="PRO_ENCRYPT_APIInputCatchHandler.subflow"/>
+        <ns2:errorHandler type="FAILURE" implementation="PRO_ENCRYPT_APIInputFailureHandler.subflow"/>
+        <ns2:errorHandler type="TIMEOUT" implementation="PRO_ENCRYPT_APIInputTimeoutHandler.subflow"/>
+    </ns2:errorHandlers>
+</ns2:restapiDescriptor>
